@@ -1,0 +1,17 @@
+{
+  "name": "crud-com-qualidade-mario-souto",
+  "version": "1.0.0",
+  "description": "projeto crud com qualidade - curso",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./core/crud.js",
+    "dev": "nodemon ./core/crud.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
