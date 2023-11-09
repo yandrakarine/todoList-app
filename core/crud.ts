@@ -9,6 +9,7 @@ interface Todo {
   content: string;
   done: boolean;
 }
+type UUID = string;
 
 function create(content: string): Todo {
   const todo: Todo = {
@@ -42,7 +43,7 @@ function read(): Array<Todo> {
   return db.todos;
 }
 
-function update(id: string, partialTodo: Partial<Todo>) {
+function update(id: UUID, partialTodo: Partial<Todo>) {
   let updatedTodo;
   const todos = read();
   todos.forEach((currentTodo) => {
@@ -58,10 +59,25 @@ function update(id: string, partialTodo: Partial<Todo>) {
   return updatedTodo;
 }
 
-function updateContentById(id: string, content: string): Todo {
+function updateContentById(id: UUID, content: string): Todo {
   return update(id, {
     content: content,
   });
+}
+
+function deleteById(id: UUID) {
+  const todosFromDb = read();
+  const todosWithoutOne = todosFromDb.filter((todo) => todo.id !== id);
+  fs.writeFileSync(
+    DB_FILE_PATH,
+    JSON.stringify(
+      {
+        todos: todosWithoutOne,
+      },
+      null,
+      4
+    )
+  );
 }
 
 function clearDB() {
@@ -77,6 +93,10 @@ update(terceiraTodo.id, {
   content: "atualizando a terceira todo",
   done: true,
 });
+create("essa é a quarta todo");
+const quintaTodo = create("essa é a quinta todo");
+create("essa é a sexta todo");
 // updateContentById(terceiraTodo.id, "Olha aqui!");
-console.log(read());
-read();
+const readTodos = read();
+deleteById(quintaTodo.id);
+// console.log(readTodos);
