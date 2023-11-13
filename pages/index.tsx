@@ -1,4 +1,4 @@
-import { GlobalStyles } from "../src/ui/themes/GlobalStyles";
+import { GlobalStyles } from "@ui/themes/GlobalStyles";
 
 const bg = "/bg-theme-yandra.jpg";
 export default function Page() {
